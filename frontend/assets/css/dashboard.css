@@ -1,0 +1,146 @@
+/* ============================================
+   ToDo Hub — Dashboard
+   ============================================ */
+
+.dashboard {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(160deg, #141a2e 0%, #1b2342 55%, #1a2138 100%);
+    overflow: hidden;
+}
+
+/* ============================================
+   Task row (full-width rectangle)
+   ============================================ */
+
+.task-row {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(10px);
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.task-row:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ============================================
+   Task checkboxes
+   ============================================ */
+
+.task-check {
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.task-check.completed {
+    background: linear-gradient(135deg, #5b7cc9, #6b8fd4);
+    border-color: transparent;
+}
+
+.task-check.in-progress {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #5b7cc9;
+}
+
+/* ============================================
+   Action buttons
+   ============================================ */
+
+.btn-task-action {
+    border: none;
+    font-size: 0.85rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-task-action:hover {
+    transform: translateY(-2px);
+}
+
+.btn-update {
+    background: rgba(91, 124, 201, 0.2);
+    color: #8aa6e0;
+    border: 1px solid rgba(91, 124, 201, 0.3);
+}
+
+.btn-update:hover {
+    background: rgba(91, 124, 201, 0.35);
+    box-shadow: 0 4px 15px rgba(91, 124, 201, 0.2);
+    color: #fff;
+}
+
+.btn-delete {
+    background: rgba(214, 48, 49, 0.15);
+    color: #e17055;
+    border: 1px solid rgba(214, 48, 49, 0.2);
+}
+
+.btn-delete:hover {
+    background: rgba(214, 48, 49, 0.3);
+    box-shadow: 0 4px 15px rgba(214, 48, 49, 0.2);
+    color: #fff;
+}
+
+/* ============================================
+   Modal
+   ============================================ */
+
+.modal-backdrop.show {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+    background: rgba(20, 26, 46, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   Day groups
+   ============================================ */
+
+.day-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 0.5rem;
+}
+
+.day-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #8aa6e0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 575px) {
+    .task-row {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 1rem;
+        padding: 1rem 1.2rem !important;
+        text-align: left !important;
+    }
+
+    .task-row .task-row-content {
+        text-align: left !important;
+    }
+
+    .task-row .d-flex:last-child {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}

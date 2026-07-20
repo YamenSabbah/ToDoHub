@@ -1,0 +1,151 @@
+/* ============================================
+   ToDo Hub — Auth Pages (Login / Register)
+   ============================================ */
+
+/* Note: Core color variables and global body resets are inherited from index.css */
+
+/* ============================================
+   Auth page
+   ============================================ */
+
+.auth-page {
+    background: linear-gradient(160deg, #141a2e 0%, #1b2342 55%, #1a2138 100%);
+}
+
+/* ============================================
+   Auth card
+   ============================================ */
+
+.auth-card {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    animation: authFadeIn 0.8s ease forwards;
+    opacity: 0;
+}
+
+@keyframes authFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.auth-title {
+    font-size: 1.9rem;
+    letter-spacing: -0.5px;
+}
+
+/* ============================================
+   Form controls — override Bootstrap dark text
+   ============================================ */
+
+.form-label,
+.form-check-label {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    font-size: 0.88rem;
+    margin-bottom: 0.35rem;
+}
+
+.auth-input {
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-input::placeholder {
+    color: var(--text-muted) !important;
+    opacity: 1;
+}
+
+.auth-input:focus {
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 0.2rem rgba(91, 124, 201, 0.25) !important;
+    color: var(--text-primary) !important;
+}
+
+.auth-check {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: var(--glass-border);
+}
+
+.auth-check:checked {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.btn-primary-custom {
+    background: var(--gradient-3);
+    border: none;
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+}   
+
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(91, 124, 201, 0.3);
+    color: #fff;
+}
+
+.btn-outline-auth {
+    background: rgba(0, 0, 0, 0.15) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--glass-border) !important;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.btn-outline-auth:hover {
+    background: rgba(91, 124, 201, 0.15) !important;
+    border-color: var(--primary-light) !important;
+    color: var(--text-primary) !important;
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   Links & divider
+   ============================================ */
+
+.auth-link {
+    color: var(--primary-light);
+}
+
+.auth-link:hover {
+    color: var(--accent);
+}
+
+.auth-divider {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--glass-border);
+}
+
+.auth-divider span {
+    padding: 0 0.8rem;
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 991px) {
+    .auth-card { max-width: 500px; }
+}
+
+@media (max-width: 575px) {
+    .auth-card { border-radius: 16px; }
+    .auth-title { font-size: 1.5rem; }
+    .btn-outline-auth { font-size: 0.85rem; }
+}

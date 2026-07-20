@@ -1,0 +1,319 @@
+/* ============================================
+   ToDo Hub — Hero Section (Calm Edition)
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #5b7cc9;
+    --primary-light: #8aa6e0;
+    --accent: #5ec8c4;
+    --gradient-1: linear-gradient(135deg, #6b8fd4, #5ec8c4);
+    --gradient-3: linear-gradient(135deg, #5b7cc9, #6b8fd4);
+    --text-primary: #eef2fb;
+    --text-secondary: rgba(238, 242, 251, 0.72);
+    --text-muted: rgba(238, 242, 251, 0.45);
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.09);
+    --card-bg: rgba(255, 255, 255, 0.05);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #141a2e;
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+/* ============================================
+   Hero
+   ============================================ */
+
+.hero {
+    background: linear-gradient(160deg, #141a2e 0%, #1b2342 55%, #1a2138 100%);
+}
+
+.hero-particles {
+    opacity: 0.35;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+    0%   { transform: translateY(100vh); opacity: 0; }
+    15%  { opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* ============================================
+   Content
+   ============================================ */
+
+.hero-badge {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--primary-light);
+    letter-spacing: 0.4px;
+    animation: fadeIn 1s ease forwards;
+    opacity: 0;
+}
+
+.hero-title {
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    animation: fadeIn 1s ease 0.15s forwards;
+    opacity: 0;
+}
+
+.gradient-text {
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    max-width: 480px;
+    animation: fadeIn 1s ease 0.3s forwards;
+    opacity: 0;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.hero-buttons {
+    animation: fadeIn 1s ease 0.45s forwards;
+    opacity: 0;
+}
+
+.btn-primary-custom {
+    background: var(--gradient-3);
+    border: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    
+
+}
+
+.btn-primary-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(91, 124, 201, 0.3);
+    color: #fff;
+}
+
+.btn-outline-custom {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.btn-outline-custom:hover {
+    background: var(--glass-bg);
+    border-color: var(--primary-light);
+}
+
+/* ============================================
+   Stats
+   ============================================ */
+
+.hero-stats {
+    animation: fadeIn 1s ease 0.6s forwards;
+    opacity: 0;
+}
+
+.text-muted-custom {
+    color: var(--text-muted) !important;
+}
+
+/* ============================================
+   Visual Cards
+   ============================================ */
+
+.todo-cards-stack {
+    position: relative;
+    width: 330px;
+    height: 400px;
+}
+
+.todo-card {
+    width: 310px;
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    animation: cardFloat 9s ease-in-out infinite;
+}
+
+.card-1 { top: 0; left: 0; z-index: 3; animation-delay: 0s; }
+.card-2 { top: 36px; left: 26px; z-index: 2; opacity: 0.82; transform: scale(0.96); animation: cardFloat2 9s ease-in-out infinite; animation-delay: -3s; }
+.card-3 { top: 72px; left: 52px; z-index: 1; opacity: 0.6; transform: scale(0.92); animation: cardFloat3 9s ease-in-out infinite; animation-delay: -6s; }
+
+@keyframes cardFloat   { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes cardFloat2  { 0%,100% { transform: scale(0.96) translateY(0); } 50% { transform: scale(0.96) translateY(-5px); } }
+@keyframes cardFloat3  { 0%,100% { transform: scale(0.92) translateY(0); } 50% { transform: scale(0.92) translateY(-3px); } }
+
+.card-dot { width: 9px; height: 9px; }
+.dot-blue { background: #6b8fd4; }
+.dot-green { background: #5ec8c4; }
+.dot-purple { background: #9b8fd4; }
+
+.task-check {
+    width: 20px;
+    height: 20px;
+    border-color: var(--glass-border) !important;
+}
+
+.task-check.completed {
+    background: var(--gradient-3);
+    border-color: transparent !important;
+}
+
+.task-text {
+    color: var(--text-secondary);
+}
+
+.task-text.done {
+    color: var(--text-muted) !important;
+}
+
+.progress-text {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.celebration-icon svg { color: #e0c97a; }
+.celebration-icon span {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+/* ============================================
+   Scroll Indicator
+   ============================================ */
+
+.scroll-indicator {
+    bottom: 28px;
+    animation: fadeIn 1s ease 0.9s forwards;
+    opacity: 0;
+}
+
+.mouse {
+    width: 24px;
+    height: 38px;
+    border: 2px solid var(--text-muted);
+    border-radius: 18px;
+    display: flex;
+    justify-content: center;
+    padding-top: 7px;
+}
+
+.wheel {
+    width: 3px;
+    height: 7px;
+    background: var(--primary-light);
+    border-radius: 4px;
+    animation: scrollWheel 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollWheel {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(10px); opacity: 0; }
+}
+
+.scroll-indicator span {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* ============================================
+   Animations
+   ============================================ */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   Navbar
+   ============================================ */
+
+.site-navbar {
+    background: #141a2e;
+}
+
+.navbar-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.brand-text {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+.site-footer {
+    background: #0f1426;
+}
+
+.contact-label {
+    letter-spacing: 0.8px;
+}
+
+.social-link {
+    width: 42px;
+    height: 42px;
+    background: var(--glass-bg);
+    transition: all 0.25s ease;
+}
+
+.social-link:hover {
+    background: var(--primary);
+    border-color: transparent !important;
+    color: #fff !important;
+    transform: translateY(-3px);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 991px) {
+    .hero-title { font-size: 2.6rem; }
+    .todo-cards-stack { width: 290px; height: 380px; }
+    .todo-card { width: 270px; }
+}
+
+@media (max-width: 575px) {
+    .hero-title { font-size: 2rem; }
+    .hero-description { font-size: 1rem; }
+    .todo-cards-stack { width: 250px; height: 360px; }
+    .todo-card { width: 235px; }
+}

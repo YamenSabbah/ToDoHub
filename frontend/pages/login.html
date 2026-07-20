@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/index.css">
+    <link rel="stylesheet" href="../assets/css/auth.css">
+    <title>Login — ToDo Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="icon" type="image/icon" href="../assets/images/Task.ico">
+</head>
+
+<body>
+    <nav
+        class="navbar navbar-expand-lg site-navbar position-absolute top-0 start-0 end-0 py-3 border-bottom border-light border-opacity-10 z-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2 text-decoration-none" href="index.html">
+                <img src="../assets/images/Task.ico" alt="ToDo Hub" class="navbar-icon" width="32" height="32">
+                <span class="brand-text text-white">ToDo<span class="gradient-text">Hub</span></span>
+            </a>
+        </div>
+    </nav>
+
+    <section class="auth-page position-relative min-vh-100 d-flex align-items-center overflow-hidden mt-lg-5">
+        <div class="hero-particles position-absolute top-0 start-0 w-100 h-100 pe-none opacity-35 z-1" id="particles">
+        </div>
+
+        <div class="container py-5 mt-5 mt-lg-0">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-10 col-md-7 col-lg-5">
+                    <div class="auth-card position-relative z-2 p-4 p-sm-5 rounded-4 shadow">
+                        <div class="text-center mb-4">
+                            <h2 class="auth-title fw-bold text-white mb-2">Welcome back</h2>
+                            <p class="text-white-50 small mb-0">Log in to pick up where you left off.</p>
+                        </div>
+
+                        <form action="/auth/login" method="POST" class="d-flex flex-column gap-3">
+                            <div class="form-group">
+                                <label for="email" class="form-label text-white-50">Email address</label>
+                                <input type="email" class="form-control auth-input px-3 py-2 rounded-3 fs-6" id="email"
+                                    name="email" placeholder="you@gmail.com" required
+                                    pattern="[a-zA-Z0-9._%+-]+@gmail\.com" oninput="validateGmail(this)">
+                                <small class="email-error text-danger d-none">Please use a valid @gmail.com
+                                    address</small>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                    <label for="password" class="form-label text-white-50 mb-0">Password</label>
+                                </div>
+                                <input type="password" class="form-control auth-input px-3 py-2 rounded-3 fs-6"
+                                    id="password" name="password" placeholder="••••••••" required minlength="6">
+                            </div>
+
+                            <button type="submit"
+                                class="btn btn-primary-custom fw-bold text-white w-100 py-2 mt-2 rounded-3">
+                                Log In
+                            </button>
+                        </form>
+
+                        <div class="auth-divider d-flex align-items-center text-center my-3"><span>or</span></div>
+
+
+
+                        <p class="text-center text-white-50 mt-4 mb-0 small">
+                            New to ToDo Hub?
+                            <a href="register.html" class="auth-link fw-semibold text-decoration-none">Create an
+                                account</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="../assets/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script>
+        function validateGmail(input) {
+            const error = document.querySelector('.email-error');
+            const valid = /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(input.value);
+            if (input.value.length > 0 && !valid) {
+                error.classList.remove('d-none');
+                input.classList.add('is-invalid');
+                input.classList.remove('is-valid');
+            } else if (input.value.length > 0 && valid) {
+                error.classList.add('d-none');
+                input.classList.add('is-valid');
+                input.classList.remove('is-invalid');
+            } else {
+                error.classList.add('d-none');
+                input.classList.remove('is-invalid', 'is-valid');
+            }
+        }
+
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const email = document.getElementById('email');
+            const valid = /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email.value);
+            if (!valid) {
+                e.preventDefault();
+                validateGmail(email);
+                email.focus();
+            }
+        })
+    </script>
+</body >
+
+</html >
