@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id         Int @id @default(autoincrement())
+  username    String  @db.VarChar(30)
+  email       String  @unique @db.VarChar(50)
+  password    String  @db.VarChar(255)
+
+  tasks Task[]
+
+  @@map("users")
+}
+
+model Task {
+  id          Int @id @default(autoincrement())
+  userId      Int @db.Integer
+  name        String @db.VarChar(100)
+  description String @db.Text
+  day         Day
+  isCompleted Boolean @default(false) @db.Boolean
+  createdAt   DateTime @default(now()) @db.Timestamp
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("tasks")
+  
+}
+
+enum Day {
+  Saturday
+  Sunday
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+}

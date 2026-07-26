@@ -134,6 +134,8 @@ function populateDaySelect() {
         select.appendChild(option);
     });
 }
+document.addEventListener('DOMContentLoaded', function () {
+    populateDaySelect();
+    renderTasks();
+});
 
-populateDaySelect();
-renderTasks();
