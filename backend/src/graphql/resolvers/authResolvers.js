@@ -3,15 +3,14 @@ import { prisma } from "../../lib/prisma.js";
 import { generateToken } from "../../utils/generateToken.js";
 export const authResolver = {
     login: async ({ email, password }, context) => {
-        console.log(email)
         const user = await prisma.user.findUnique({ where: { email } });
        
         if (!user) {
-            throw new Error("User not found");
+            throw new Error("Invalid email or password");
         }
         const validPassword = await bcrypt.compare(password, user.password);
         if (!validPassword) {
-            throw new Error("Invalid password");
+            throw new Error("Invalid email or password");
         }
 
         const token = generateToken(user.id);

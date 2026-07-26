@@ -7,12 +7,15 @@ export const userResolvers = {
       const user = await prisma.user.findUnique({
           where: { id: context.user.id },
       });
-      console.log(user)
       if (!user) {
           throw new Error("User not found");
       }
       return {
-         id:user.id
+         user:{
+            
+            username:user.username,
+            email:user.email
+         }
       };
     }
 };

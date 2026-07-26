@@ -29,7 +29,6 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     }),
   });
   const result = await res.json();
-  console.log(result)
   if (result.errors) {
     const error = document.querySelector(".email-error");
     error.classList.remove("d-none");

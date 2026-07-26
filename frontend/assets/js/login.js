@@ -34,7 +34,6 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     }
     else {
     
-        console.log(result.data.login)
         document.querySelector('form').reset();
         document.querySelectorAll('.is-valid, .is-invalid').forEach(function (el) {
             el.classList.remove('is-valid', 'is-invalid');

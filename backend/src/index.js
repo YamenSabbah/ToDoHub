@@ -1,6 +1,7 @@
 import { createHandler } from 'graphql-http/lib/use/express';
 import express from 'express';
 import cors from "cors";
+import helmet from "helmet";
 import { schema } from './graphql/schema.js';
 import { root } from './graphql/resolvers/root.js';
 import { ruruHTML } from 'ruru/server';
@@ -20,12 +21,27 @@ const limiter = rateLimit({
 const app = express();
 
 // The root provides a resolver function for each API endpoint
+// app.use(helmet());
 app.use(cors({
     origin: "http://localhost:4000",
     credentials: true,
 }));
 app.use(cookieParser());
 app.use(express.json());
+
+// Protect certain pages from unauthenticated access
+const protectedPages = ['/pages/dashboard.html'];
+
+app.use((req, res, next) => {
+    if (protectedPages.includes(req.path)) {
+        const { user } = authMiddleware(req);
+        if (!user) {
+            return res.redirect('/pages/login.html?error=Please+login+first');
+        }
+    }
+    next();
+});
+
 app.use(express.static(path.join(__dirname, '../../frontend')));
 app.use('/graphql', limiter);
 app.get('/', (_req, res) => {

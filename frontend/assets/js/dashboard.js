@@ -138,4 +138,30 @@ document.addEventListener('DOMContentLoaded', function () {
     populateDaySelect();
     renderTasks();
 });
+//>--------------------------------------------------------------------------
+//> ------------------ Render the name of the account <----------------------
+//>--------------------------------------------------------------------------
 
+
+async function getUser() {
+    const res = await fetch("/graphql", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+            query: `{ getUser { username email } }`
+        })
+    });
+    const result = await res.json();
+    return result.data?.getUser || null;
+}
+
+// document.addEventListener('DOMContentLoaded', async () => {
+//     const user = await getUser();
+//     if (!user) {
+//         window.location.href = "index.html";
+//         return;
+//     }
+//     document.querySelector("nav .fw-bold").textContent = user.username;
+//     renderTasks();
+// });
