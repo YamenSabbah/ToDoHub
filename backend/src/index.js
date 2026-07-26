@@ -45,9 +45,15 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, '../../frontend')));
 app.use('/graphql', limiter);
 app.get('/', (_req, res) => {
+    res.sendFile(path.join(__dirname, '../../frontend/pages/index.html'));
+});
+
+// GraphQL IDE (ruru) at /graphql-ide
+app.get('/graphql-ide', (_req, res) => {
     res.type('html');
     res.end(ruruHTML({ endpoint: '/graphql' }));
 });
+
 
 
 app.all(

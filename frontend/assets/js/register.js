@@ -1,5 +1,14 @@
 document.querySelector("form").addEventListener("submit", async function (e) {
   e.preventDefault();
+
+  // Show loading spinner
+  const btn = document.getElementById("registerBtn");
+  const btnText = document.getElementById("registerBtnText");
+  const btnSpinner = document.getElementById("registerBtnSpinner");
+  btn.disabled = true;
+  btnText.textContent = "Creating account...";
+  btnSpinner.classList.remove("d-none");
+
   const username = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
@@ -29,6 +38,11 @@ document.querySelector("form").addEventListener("submit", async function (e) {
     }),
   });
   const result = await res.json();
+  // Hide loading spinner
+  btn.disabled = false;
+  btnText.textContent = "Create Account";
+  btnSpinner.classList.add("d-none");
+
   if (result.errors) {
     const error = document.querySelector(".email-error");
     error.classList.remove("d-none");

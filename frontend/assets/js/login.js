@@ -1,5 +1,14 @@
 document.querySelector("form").addEventListener("submit", async function (e) {
     e.preventDefault();
+    
+    // Show loading spinner
+    const btn = document.getElementById("loginBtn");
+    const btnText = document.getElementById("loginBtnText");
+    const btnSpinner = document.getElementById("loginBtnSpinner");
+    btn.disabled = true;
+    btnText.textContent = "Logging in...";
+    btnSpinner.classList.remove("d-none");
+
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const res = await fetch("/graphql", {
@@ -27,6 +36,11 @@ document.querySelector("form").addEventListener("submit", async function (e) {
         }),
     });
     const result = await res.json();
+    // Hide loading spinner
+    btn.disabled = false;
+    btnText.textContent = "Log In";
+    btnSpinner.classList.add("d-none");
+
     if (result.errors) {
         const error = document.querySelector(".email-error");
         error.classList.remove("d-none");

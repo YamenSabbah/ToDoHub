@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import argon2 from "argon2";
 import { prisma } from "../../lib/prisma.js";
 import { generateToken } from "../../utils/generateToken.js";
 export const authResolver = {
@@ -8,7 +8,7 @@ export const authResolver = {
         if (!user) {
             throw new Error("Invalid email or password");
         }
-        const validPassword = await bcrypt.compare(password, user.password);
+        const validPassword = await argon2.verify(user.password, password);
         if (!validPassword) {
             throw new Error("Invalid email or password");
         }
@@ -34,8 +34,7 @@ export const authResolver = {
         if (existsUser) {
             throw new Error("User already exists");
         }
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+        const hashedPassword = await argon2.hash(password);
         const user = await prisma.user.create({ data: { username: name, email, password: hashedPassword } });
         const token = generateToken(user.id);
         context.res.cookie("token", token, {
