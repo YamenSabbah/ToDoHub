@@ -1,17 +1,17 @@
 import { createHandler } from 'graphql-http/lib/use/express';
 import express from 'express';
 import cors from "cors";
-import helmet from "helmet";
 import { schema } from './graphql/schema.js';
 import { root } from './graphql/resolvers/root.js';
-import { ruruHTML } from 'ruru/server';
-import rateLimit from "express-rate-limit";
-import cookieParser from "cookie-parser";
+import { ruruHTML } from 'ruru/server'; //download using npm i ruru
+import rateLimit from "express-rate-limit"; //download using npm i express-rate-limit
+import cookieParser from "cookie-parser"; //download using npm i cookie-parser
 import { authMiddleware } from "./middlewares/authMiddleware.js";
 import path from "path";
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+//download the Rate limit , using npm i express-rate-limit
 const limiter = rateLimit({
     windowMs: 1000 * 60 * 15,
     max: 100 // limit each IP to 100 requests per windowMs
@@ -26,6 +26,7 @@ app.use(cors({
     origin: "http://localhost:4000",
     credentials: true,
 }));
+// download the cookie parser , using npm i cookie-parser
 app.use(cookieParser());
 app.use(express.json());
 
@@ -33,6 +34,7 @@ app.use(express.json());
 const protectedPages = ['/pages/dashboard.html'];
 
 app.use((req, res, next) => {
+    console.log(req.cookies);
     if (protectedPages.includes(req.path)) {
         const { user } = authMiddleware(req);
         if (!user) {
