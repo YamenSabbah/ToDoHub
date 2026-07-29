@@ -4,7 +4,7 @@ import { generateToken } from "../../utils/generateToken.js";
 export const authResolver = {
     login: async ({ email, password }, context) => {
         const user = await prisma.user.findUnique({ where: { email } });
-       
+
         if (!user) {
             throw new Error("Invalid email or password");
         }
@@ -18,7 +18,7 @@ export const authResolver = {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",
-            maxAge: 1000 * 60 * 60 * 24
+            maxAge: 1000 * 60 * 60
         });
         return {
             user: {
@@ -51,7 +51,7 @@ export const authResolver = {
         };
     },
     logout: async (_, context) => {
-        context.res.clearCookie("token" , {
+        context.res.clearCookie("token", {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "strict",

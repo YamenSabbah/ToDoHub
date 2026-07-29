@@ -1,7 +1,6 @@
 import { prisma } from "../../lib/prisma.ts";
 export const userResolvers = {
   getUser: async (_, context) => {
-    console.log("Context:", context.user);
     if (!context.user) {
       throw new Error("Unauthorized");
     }

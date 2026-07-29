@@ -34,7 +34,6 @@ app.use(express.json());
 const protectedPages = ['/pages/dashboard.html'];
 
 app.use((req, res, next) => {
-    console.log(req.cookies);
     if (protectedPages.includes(req.path)) {
         const { user } = authMiddleware(req);
         if (!user) {
