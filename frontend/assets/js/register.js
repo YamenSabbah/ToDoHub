@@ -12,7 +12,7 @@ document.querySelector("form").addEventListener("submit", async function (e) {
   const username = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  const res = await fetch("http://localhost:4000/graphql", {
+  const res = await fetch("/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
