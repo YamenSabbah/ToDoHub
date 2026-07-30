@@ -18,6 +18,7 @@
 ## 📋 Overview
 
 **ToDo Hub** is a full-stack task management app that lets you organize your weekly tasks by day. It features a sleek dark-themed UI, secure JWT-based authentication with httpOnly cookies, and a GraphQL API for all CRUD operations.
+<img width="1345" height="635" alt="image" src="https://github.com/user-attachments/assets/db37b4b7-ce74-4720-a572-873f5a14d405" />
 
 ---
 
